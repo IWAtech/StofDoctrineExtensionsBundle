@@ -1,11 +1,15 @@
 {
-    "name": "stof/doctrine-extensions-bundle",
+    "name": "iwatech/doctrine-extensions-bundle",
     "type": "symfony-bundle",
     "description": "Integration of the gedmo/doctrine-extensions with Symfony2",
     "keywords": ["tree", "behaviors", "doctrine2", "extensions", "gedmo", "sluggable","loggable", "translatable", "nestedset", "sortable", "timestampable"],
-    "homepage": "https://github.com/stof/StofDoctrineExtensionsBundle",
+    "homepage": "https://github.com/IWAtech/StofDoctrineExtensionsBundle",
     "license": "MIT",
     "authors": [
+        {
+            "name": "IWAtech",
+            "email": "dev@iwa-tech.com"
+        },
         {
             "name": "Christophe Coevoet",
             "email": "stof@notk.org"
