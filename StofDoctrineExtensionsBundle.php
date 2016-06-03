@@ -2,9 +2,10 @@
 
 namespace Stof\DoctrineExtensionsBundle;
 
+use Stof\DoctrineExtensionsBundle\DependencyInjection\Compiler\SecurityContextPass;
+use Stof\DoctrineExtensionsBundle\DependencyInjection\Compiler\ValidateExtensionConfigurationPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Stof\DoctrineExtensionsBundle\DependencyInjection\Compiler\ValidateExtensionConfigurationPass;
 use Gedmo\Uploadable\Mapping\Validator;
 
 class StofDoctrineExtensionsBundle extends Bundle
@@ -14,13 +15,14 @@ class StofDoctrineExtensionsBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
-        parent::build($container);
         $container->addCompilerPass(new ValidateExtensionConfigurationPass());
-
+        $container->addCompilerPass(new SecurityContextPass());
     }
 
     public function boot()
     {
-        Validator::$validateWritableDirectory = $this->container->getParameter('stof_doctrine_extensions.uploadable.validate_writable_directory');
+        if ($this->container->hasParameter('stof_doctrine_extensions.uploadable.validate_writable_directory')) {
+            Validator::$validateWritableDirectory = $this->container->getParameter('stof_doctrine_extensions.uploadable.validate_writable_directory');
+        }
     }
 }
